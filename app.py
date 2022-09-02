@@ -67,19 +67,31 @@ def updateTask():
         resp.status_code = 200
         return resp        
         
-
+"""
+Api : Delete from todo list
+Method: DELETE
+Response: Message 
+"""
 @app.route('/todo/delete/<id>',methods=['DELETE'])
 def deleteTask(id):
     result = controller.delete_todo(id)
     resp = jsonify({'message' : 'Successfully deleted the task.'})
     resp.status_code = 200
     return resp
-
+"""
+Api : Filter in todo list
+Method: GET
+Response: Filterted result 
+"""
 @app.route("/todo/filter/<status>", methods=["GET"])
 def getTodoByStatus(status):
     todos = controller.filter_todo(status)
     return jsonify(todos), 200    
-
+"""
+Api : Search in todo list
+Method: GET
+Response: Search result 
+"""
 @app.route("/todo/search/<query>", methods=["GET"])
 def getTodoByQuery(query):
     todos = controller.search_todo(query)
